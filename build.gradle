@@ -1,0 +1,50 @@
+plugins {
+  id 'java'
+  id 'application'
+  id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+javafx {
+    version = "15.0.1"
+    modules = [ 'javafx.controls' ]
+}
+
+mainClassName = 'pixelsorter.Main'
+
+repositories { 
+    mavenCentral() 
+}
+
+jar {
+    archiveBaseName = 'pixelsorter'
+    archiveVersion =  '0.1.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    implementation "joda-time:joda-time:2.2"
+    testImplementation "junit:junit:4.12"
+    implementation 'org.openjfx:javafx-controls:11.0.2'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': mainClassName
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/resources"]
+            includes = ["**/*.css", "**/*.jpg", "**/*.png", "**/*.fxml", "**/*.wav"]
+        }
+    }
+}

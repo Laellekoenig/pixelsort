@@ -1,0 +1,51 @@
+#title {
+    -fx-font-size: 30px;
+    -fx-font-family: Roboto;
+}
+
+#version {
+    -fx-font-style: italic;
+}
+
+.root {
+    -fx-background-color: #E1E2E1;
+}
+
+.button {
+    -fx-background-radius: 3;
+    -fx-background-color: #e0e0e0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 8, 0.5, 1, 2);
+    -fx-text-fill: rgba(0, 0, 0, 1);
+    -fx-font-family: Roboto;
+}
+
+.button:hover {
+    -fx-background-color: #aeaeae;
+    -fx-cursor: hand;
+}
+
+.choice-box {
+    -fx-font-family: Roboto;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 8, 0.5, 1, 2);
+    -fx-border-style: none;
+}
+
+.choice-box:focused {
+    -fx-border-width: 0;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #e0e0e0;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #aeaeae;
+}
+
+.choice-box .menu-item > .label {
+
+}
+
+.choice-box .menu-item:focused > .label {
+
+}
