@@ -65,4 +65,8 @@ public class Sorter {
 
         handler.updateImage(sorted);
     }
+
+    private void averageVerticalPixelSort(BufferedImage image) {
+
+    }
 }
