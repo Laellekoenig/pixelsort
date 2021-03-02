@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 import pixelsort.filehandler.FileHandler;
+import pixelsort.sorter.image.Pixel;
+import pixelsort.sorter.image.SortbyAverage;
+import pixelsort.sorter.image.Utilities;
 
 public class Sorter {
 
@@ -18,9 +21,10 @@ public class Sorter {
     public void sort() {
         if (mode == 0) verticalPixelSort();
         if (mode == 1) horizontalPixelSort();
+        if (mode == 3) averageVerticalPixelSort();
     }
 
-    private void verticalPixelSort() {
+    private void horizontalPixelSort() {
 
         BufferedImage img = handler.getBufferedImage();
         int w = img.getWidth();
@@ -43,7 +47,7 @@ public class Sorter {
         handler.updateImage(sorted);
     }
 
-    private void horizontalPixelSort() {
+    private void verticalPixelSort() {
 
         BufferedImage img = handler.getBufferedImage();
         int w = img.getWidth();
@@ -66,7 +70,17 @@ public class Sorter {
         handler.updateImage(sorted);
     }
 
-    private void averageVerticalPixelSort(BufferedImage image) {
+    private void averageVerticalPixelSort() {
 
+        BufferedImage img = handler.getBufferedImage();
+        int w = img.getWidth();
+        int h = img.getHeight();
+        BufferedImage sorted = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+
+        Pixel[] pixels = Utilities.getPixels(img);
+        Arrays.sort(pixels, new SortbyAverage());
+        sorted = Utilities.imageFromPixels(pixels, w, h);
+
+        handler.updateImage(sorted);
     }
 }

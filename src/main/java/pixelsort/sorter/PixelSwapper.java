@@ -33,8 +33,8 @@ public class PixelSwapper {
 
         if (numPixels > numPixels2) return;
 
-        int[] pixels = Utilities.getPixels(img);
-        int[] pixels2 = Utilities.getPixels(img2);
+        int[] pixels = Utilities.getIntPixels(img);
+        int[] pixels2 = Utilities.getIntPixels(img2);
 
         Pixel[] p = new Pixel[pixels.length];
         Pixel[] p2 = new Pixel[pixels2.length];
