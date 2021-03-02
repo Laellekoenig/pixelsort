@@ -18,6 +18,7 @@ import javafx.stage.FileChooser;
 import javafx.scene.control.Button;
 
 import pixelsort.filehandler.FileHandler;
+import pixelsort.sorter.PixelSwapper;
 import pixelsort.sorter.Sorter;
 
 public class GUI extends Application {
@@ -80,7 +81,7 @@ public class GUI extends Application {
         fileChooser.getExtensionFilters().add(filter2);
         fileChooser.getExtensionFilters().add(filter3);
 
-        ChoiceBox choiceBox = new ChoiceBox(FXCollections.observableArrayList("Vertical Pixel Sort", "Horizontal Pixel Sort"));
+        ChoiceBox choiceBox = new ChoiceBox(FXCollections.observableArrayList("Vertical Pixel Sort", "Horizontal Pixel Sort", "Pixel Merge"));
 
         imageView = new ImageView();
         imageView.setPreserveRatio(true);
@@ -106,8 +107,16 @@ public class GUI extends Application {
         createImage.setOnAction(e -> {
             int mode = choiceBox.getSelectionModel().getSelectedIndex();
             if (mode != -1) {
-                Sorter sorter = new Sorter(mode, fileHandler);
-                sorter.sort();
+                if (mode == 2) {
+                    File mergeFile = fileChooser.showOpenDialog(stage);
+                    FileHandler swapFileHandler = new FileHandler(this);
+                    swapFileHandler.loadImage(mergeFile);
+                    PixelSwapper swapper = new PixelSwapper(fileHandler, swapFileHandler);
+                    swapper.swap();
+                } else {
+                    Sorter sorter = new Sorter(mode, fileHandler);
+                    sorter.sort();
+                }
             }
         });
 
