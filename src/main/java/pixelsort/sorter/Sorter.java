@@ -10,7 +10,7 @@ import pixelsort.sorter.image.Utilities;
 
 public class Sorter {
 
-    int mode;   //0 = verticalSort, 1 = horizontalSort
+    int mode;   //0 = verticalSort, 1 = horizontalSort, 3 = averageVerticalSort, 4 = averageHorizontalSort
     FileHandler handler;
 
     public Sorter(int mode, FileHandler handler) {
@@ -22,6 +22,7 @@ public class Sorter {
         if (mode == 0) verticalPixelSort();
         if (mode == 1) horizontalPixelSort();
         if (mode == 3) averageVerticalPixelSort();
+        if (mode == 4) averageHorizontalPixelSort();
     }
 
     private void horizontalPixelSort() {
@@ -77,12 +78,6 @@ public class Sorter {
         int h = img.getHeight();
         BufferedImage sorted = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 
-        /*
-        Pixel[] pixels = Utilities.getPixels(img);
-        Arrays.sort(pixels, new SortbyAverage());
-        sorted = Utilities.imageFromPixels(pixels, w, h);
-         */
-
         for (int i = 0; i < w; i++) {
             Pixel[] pixels = new Pixel[h];
             for (int j = 0; j < h; j++) {
@@ -93,6 +88,29 @@ public class Sorter {
 
             for (int j = 0; j < h; j++) {
                 sorted.setRGB(i, j, pixels[j].getRGB());
+            }
+        }
+
+        handler.updateImage(sorted);
+    }
+
+    private void averageHorizontalPixelSort() {
+
+        BufferedImage img = handler.getBufferedImage();
+        int w = img.getWidth();
+        int h = img.getHeight();
+        BufferedImage sorted = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+
+        for (int i = 0; i < h; i++) {
+            Pixel[] pixels = new Pixel[w];
+            for (int j = 0; j < w; j++) {
+                pixels[j] = new Pixel(-1, img.getRGB(j, i));
+            }
+
+            Arrays.sort(pixels, new SortbyAverage());
+
+            for (int j = 0; j < w; j++) {
+                sorted.setRGB(j, i, pixels[j].getRGB());
             }
         }
 
