@@ -5,12 +5,16 @@ import java.util.Arrays;
 
 import pixelsort.filehandler.FileHandler;
 import pixelsort.sorter.image.Pixel;
-import pixelsort.sorter.image.SortbyAverage;
+import pixelsort.sorter.image.SortByAverage;
 import pixelsort.sorter.image.Utilities;
 
 public class Sorter {
 
-    int mode;   //0 = verticalSort, 1 = horizontalSort, 3 = averageVerticalSort, 4 = averageHorizontalSort
+    int mode;   //0 = verticalSort,
+                // 1 = horizontalSort,
+                // 3 = averageVerticalSort,
+                // 4 = averageHorizontalSort
+                // 5 = weird af sort
     FileHandler handler;
 
     public Sorter(int mode, FileHandler handler) {
@@ -85,7 +89,7 @@ public class Sorter {
                 pixels[j] = new Pixel(-1, img.getRGB(i, j));
             }
 
-            Arrays.sort(pixels, new SortbyAverage());
+            Arrays.sort(pixels, new SortByAverage());
 
             for (int j = 0; j < h; j++) {
                 sorted.setRGB(i, j, pixels[j].getRGB());
@@ -108,7 +112,7 @@ public class Sorter {
                 pixels[j] = new Pixel(-1, img.getRGB(j, i));
             }
 
-            Arrays.sort(pixels, new SortbyAverage());
+            Arrays.sort(pixels, new SortByAverage());
 
             for (int j = 0; j < w; j++) {
                 sorted.setRGB(j, i, pixels[j].getRGB());
@@ -118,6 +122,7 @@ public class Sorter {
         handler.updateImage(sorted);
     }
 
+    //TODO: Not in UI yet
     private void averagePixelSort() {
 
         BufferedImage img = handler.getBufferedImage();
@@ -126,13 +131,14 @@ public class Sorter {
         BufferedImage sorted = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 
         Pixel[] pixels = Utilities.getPixels(img);
-        Arrays.sort(pixels, new SortbyAverage());
+        Arrays.sort(pixels, new SortByAverage());
         sorted = Utilities.imageFromPixels(pixels, w, h);
 
         handler.updateImage(sorted);
     }
 
     private void theOtherOne() {
+
         BufferedImage img = handler.getBufferedImage();
         int w = img.getWidth();
         int h = img.getHeight();

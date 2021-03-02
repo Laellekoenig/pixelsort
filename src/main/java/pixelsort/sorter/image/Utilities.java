@@ -8,14 +8,13 @@ public class Utilities {
 
         int h = img.getHeight();
         int w = img.getWidth();
-        int[] pixels = new int[h * w];
+        int[] pixels = new int[w * h];
 
-
-        int c = 0;
+        int count = 0;
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                pixels[c] = img.getRGB(j, i);
-                c += 1;
+                pixels[count] = img.getRGB(j, i);
+                count += 1;
             }
         }
 
@@ -28,11 +27,11 @@ public class Utilities {
         int h = img.getHeight();
         Pixel[] pixels = new Pixel[w * h];
 
-        int c = 0;
+        int count = 0;
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                pixels[c] = new Pixel(c, img.getRGB(j, i));
-                c++;
+                pixels[count] = new Pixel(count, img.getRGB(j, i));
+                count++;
             }
         }
         return pixels;
@@ -41,8 +40,8 @@ public class Utilities {
     public static BufferedImage imageFrom1DArray(int[] a, int w, int h) {
 
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        int count = 0;
 
+        int count = 0;
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
                 int rgb = a[count];
@@ -57,8 +56,8 @@ public class Utilities {
     public static BufferedImage imageFromPixels(Pixel[] pixels, int w, int h) {
 
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        int count = 0;
 
+        int count = 0;
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
                 int rgb = pixels[count].getRGB();

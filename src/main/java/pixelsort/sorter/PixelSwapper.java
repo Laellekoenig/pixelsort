@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import pixelsort.filehandler.FileHandler;
 import pixelsort.sorter.image.Pixel;
-import pixelsort.sorter.image.Sortby;
+import pixelsort.sorter.image.SortBy;
 import pixelsort.sorter.image.Utilities;
 
 public class PixelSwapper {
@@ -51,8 +51,8 @@ public class PixelSwapper {
             count++;
         }
 
-        Arrays.sort(p, new Sortby());
-        Arrays.sort(p2, new Sortby());
+        Arrays.sort(p, new SortBy());
+        Arrays.sort(p2, new SortBy());
 
         int[] swappedPixels = new int[numPixels];
 

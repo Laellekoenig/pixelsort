@@ -2,7 +2,7 @@ package pixelsort.sorter.image;
 
 import java.util.Comparator;
 
-public class SortbyAverage implements Comparator<Pixel> {
+public class SortByAverage implements Comparator<Pixel> {
 
     public int compare(Pixel a, Pixel b) {
         int difference = 0;
