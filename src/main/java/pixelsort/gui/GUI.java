@@ -1,18 +1,14 @@
-package pixelsorter.gui;
+package pixelsort.gui;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-import javax.imageio.ImageIO;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -21,8 +17,8 @@ import javafx.geometry.Insets;
 import javafx.stage.FileChooser;
 import javafx.scene.control.Button;
 
-import pixelsorter.filehandler.FileHandler;
-import pixelsorter.sorter.Sorter;
+import pixelsort.filehandler.FileHandler;
+import pixelsort.sorter.Sorter;
 
 public class GUI extends Application {
 
@@ -37,7 +33,7 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Pixel Sorter");
+        stage.setTitle("Pixelsort");
         //set window size properties
         stage.setHeight(600);
         stage.setWidth(900);
@@ -66,7 +62,7 @@ public class GUI extends Application {
         IO.setVgap(20);
         IO.setPadding(new Insets(0, 20, 0, 40));
 
-        Label title = new Label("Pixel Sorter");
+        Label title = new Label("Pixelsort");
         title.setId("title");
 
         Label version = new Label("V 0.1");

@@ -1,6 +1,6 @@
-package pixelsorter;
+package pixelsort;
 
-import pixelsorter.gui.*;
+import pixelsort.gui.*;
 
 public class Main {
 

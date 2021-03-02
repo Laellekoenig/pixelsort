@@ -1,14 +1,14 @@
-package pixelsorter.filehandler;
+package pixelsort.filehandler;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.LinkedList;
+
 import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
-import pixelsorter.gui.GUI;
+import pixelsort.gui.GUI;
 
 public class FileHandler {
 

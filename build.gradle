@@ -9,7 +9,7 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = 'pixelsorter.Main'
+mainClassName = 'pixelsort.Main'
 
 repositories { 
     mavenCentral() 

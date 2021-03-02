@@ -1,10 +1,9 @@
-package pixelsorter.sorter;
+package pixelsort.sorter;
 
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
-import pixelsorter.filehandler.FileHandler;
-import pixelsorter.gui.GUI;
+import pixelsort.filehandler.FileHandler;
 
 public class Sorter {
 
