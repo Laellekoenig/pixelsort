@@ -23,6 +23,7 @@ public class Sorter {
         if (mode == 1) horizontalPixelSort();
         if (mode == 3) averageVerticalPixelSort();
         if (mode == 4) averageHorizontalPixelSort();
+        if (mode == 5) theOtherOne();
     }
 
     private void horizontalPixelSort() {
@@ -127,6 +128,21 @@ public class Sorter {
         Pixel[] pixels = Utilities.getPixels(img);
         Arrays.sort(pixels, new SortbyAverage());
         sorted = Utilities.imageFromPixels(pixels, w, h);
+
+        handler.updateImage(sorted);
+    }
+
+    private void theOtherOne() {
+        BufferedImage img = handler.getBufferedImage();
+        int w = img.getWidth();
+        int h = img.getHeight();
+        BufferedImage sorted = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                sorted.setRGB(j, i, img.getRGB(j, i) * 2);
+            }
+        }
 
         handler.updateImage(sorted);
     }

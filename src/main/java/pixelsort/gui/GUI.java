@@ -81,7 +81,9 @@ public class GUI extends Application {
         fileChooser.getExtensionFilters().add(filter2);
         fileChooser.getExtensionFilters().add(filter3);
 
-        ChoiceBox choiceBox = new ChoiceBox(FXCollections.observableArrayList("Vertical Pixel Sort", "Horizontal Pixel Sort", "Pixel Merge", "avg. Vertical Pixel Sort", "avg. Horizontal Pixel Sort"));
+        ChoiceBox choiceBox = new ChoiceBox(FXCollections.observableArrayList("Vertical Pixel Sort"
+                , "Horizontal Pixel Sort", "Pixel Merge", "avg. Vertical Pixel Sort", "avg. Horizontal Pixel Sort"
+                , "Make it weird af"));
 
         imageView = new ImageView();
         imageView.setPreserveRatio(true);
