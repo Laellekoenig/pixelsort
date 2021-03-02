@@ -77,6 +77,35 @@ public class Sorter {
         int h = img.getHeight();
         BufferedImage sorted = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 
+        /*
+        Pixel[] pixels = Utilities.getPixels(img);
+        Arrays.sort(pixels, new SortbyAverage());
+        sorted = Utilities.imageFromPixels(pixels, w, h);
+         */
+
+        for (int i = 0; i < w; i++) {
+            Pixel[] pixels = new Pixel[h];
+            for (int j = 0; j < h; j++) {
+                pixels[j] = new Pixel(-1, img.getRGB(i, j));
+            }
+
+            Arrays.sort(pixels, new SortbyAverage());
+
+            for (int j = 0; j < h; j++) {
+                sorted.setRGB(i, j, pixels[j].getRGB());
+            }
+        }
+
+        handler.updateImage(sorted);
+    }
+
+    private void averagePixelSort() {
+
+        BufferedImage img = handler.getBufferedImage();
+        int w = img.getWidth();
+        int h = img.getHeight();
+        BufferedImage sorted = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+
         Pixel[] pixels = Utilities.getPixels(img);
         Arrays.sort(pixels, new SortbyAverage());
         sorted = Utilities.imageFromPixels(pixels, w, h);
