@@ -15,6 +15,7 @@ public class Sorter {
                 // 3 = averageVerticalSort,
                 // 4 = averageHorizontalSort
                 // 5 = weird af sort
+                // 6 = average pixels
     FileHandler handler;
 
     public Sorter(int mode, FileHandler handler) {
@@ -28,6 +29,7 @@ public class Sorter {
         if (mode == 3) averageVerticalPixelSort();
         if (mode == 4) averageHorizontalPixelSort();
         if (mode == 5) theOtherOne();
+        if (mode == 6) averagePixelSort();
     }
 
     private void horizontalPixelSort() {

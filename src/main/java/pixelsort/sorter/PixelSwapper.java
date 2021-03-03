@@ -18,6 +18,37 @@ public class PixelSwapper {
         this.swapFileHandler = swapFileHandler;
     }
 
+    public void crazyMerge() {
+        BufferedImage img1 = fileHandler.getBufferedImage();
+        BufferedImage img2 = swapFileHandler.getBufferedImage();
+
+        int w = Math.min(img1.getWidth(), img2.getWidth());
+        int h = Math.min(img1.getHeight(), img2.getHeight());
+
+        //int w = img1.getWidth();
+        //int h = img1.getHeight();
+
+        BufferedImage sorted = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                int clr1 = img1.getRGB(j, i);
+                int red1 =   (clr1 & 0x00ff0000) >> 16;
+                int green1 = (clr1 & 0x0000ff00) >> 8;
+                int blue1 =   clr1 & 0x000000ff;
+
+                int clr2 = img2.getRGB(j, i);
+                int red2 =   (clr2 & 0x00ff0000) >> 16;
+                int green2 = (clr2 & 0x0000ff00) >> 8;
+                int blue2 =   clr2 & 0x000000ff;
+
+                int clr = ((red1 + red2) / 2) << 16 + ((green1 + green2) / 2) << 8 + ((blue1 + blue2) / 2);
+                sorted.setRGB(j, i, clr);
+            }
+        }
+        fileHandler.updateImage(sorted);
+    }
+
     public void swap() {
 
         BufferedImage img = fileHandler.getBufferedImage();

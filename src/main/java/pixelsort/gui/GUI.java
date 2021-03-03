@@ -83,7 +83,7 @@ public class GUI extends Application {
 
         ChoiceBox choiceBox = new ChoiceBox(FXCollections.observableArrayList("Vertical Pixel Sort"
                 , "Horizontal Pixel Sort", "Pixel Merge", "avg. Vertical Pixel Sort", "avg. Horizontal Pixel Sort"
-                , "Make it weird af"));
+                , "Make it weird af", "Average Pixel Sort", "Crazy Merge"));
         /**
          *      0   -   vertical pixel sort
          *      1   -   horizontal pixel sort
@@ -91,6 +91,8 @@ public class GUI extends Application {
          *      3   -   average vertical pixel sort
          *      4   -   average horizontal pixel sort
          *      5   -   make it weird af
+         *      6   -   average pixel sort
+         *      7   -   crazy merge
          */
 
         imageView = new ImageView();
@@ -117,13 +119,14 @@ public class GUI extends Application {
         createImage.setOnAction(e -> {
             int mode = choiceBox.getSelectionModel().getSelectedIndex();
             if (mode != -1) {
-                if (mode == 2) {
+                if (mode == 2 || mode == 7) {
                     //only for swap mode
                     File swapFile = fileChooser.showOpenDialog(stage);
                     FileHandler swapFileHandler = new FileHandler(this);
                     swapFileHandler.loadImage(swapFile);
                     PixelSwapper swapper = new PixelSwapper(fileHandler, swapFileHandler);
-                    swapper.swap();
+                    if(mode == 2) swapper.swap();
+                    else swapper.crazyMerge();
                 } else {
                     Sorter sorter = new Sorter(mode, fileHandler);
                     sorter.sort();
